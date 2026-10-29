@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physical Agentic AI · Proposed ICRA 2027 Workshop</title>
+<meta name="description" content="Physical Agentic AI (PAAI): robot agents that ask for help and learn from human intervention. A half-day workshop proposed for ICRA 2027 in Seoul, Korea; under review.">
+<style>
+:root{
+  --bg:#f7f6f3;--surface:#fff;--text:#1c1b1a;--muted:#5d5a55;--line:#e6e2da;--accent:#8b1e3f;--accent-soft:#f6e9ed;
+  --hero1:#14182b;--hero2:#2a1630;--act:#2a86a8;--ask:#d0663a;--learn:#4a8f47;--band:#f1efe9;
+  --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#121214;--surface:#1b1b1f;--text:#ecebe8;--muted:#a7a49e;--line:#2e2d31;--accent:#e2819c;--accent-soft:#2c1b22;
+  --act:#62c0e0;--ask:#f0a07a;--learn:#8fcf89;--band:#19191c}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16.5px/1.65 var(--sans)}
+a{color:var(--accent);text-underline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+img{display:block;max-width:100%}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--hero1) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:52px}
+.brand{color:#fff;font-weight:700;text-decoration:none;letter-spacing:.02em;white-space:nowrap}
+.brand span{color:#e9a3b8;font-weight:600}
+.links{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.links::-webkit-scrollbar{display:none}
+.links a{color:#c9cbd6;text-decoration:none;font-size:.9rem;white-space:nowrap}
+.links a:hover{color:#fff}
+
+/* hero */
+.hero{background:radial-gradient(1200px 500px at 85% 20%,#3b1b3c 0%,transparent 60%),linear-gradient(135deg,var(--hero1),var(--hero2));color:#f3f2f7;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:24px;align-items:center;padding-top:56px;padding-bottom:56px}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.04em;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px 12px;color:#e7e3ef;background:rgba(255,255,255,.06)}
+.pill i{width:7px;height:7px;border-radius:50%;background:#f2b84b;display:inline-block}
+.hero h1{font-size:clamp(2.2rem,5.6vw,3.6rem);line-height:1.05;margin:16px 0 10px;letter-spacing:-.02em}
+.hero h1 small{display:block;font-size:.42em;font-weight:500;letter-spacing:0;color:#d9d6e3;margin-top:12px;line-height:1.3}
+.hero .q{font-size:1.05rem;color:#d7d4e0;max-width:34em;margin:14px 0 22px}
+.k{font-weight:800;font-size:.8em;letter-spacing:.07em;text-transform:uppercase}
+.k.act{color:var(--act)}.k.ask{color:var(--ask)}.k.learn{color:var(--learn)}
+.hero .k.act{color:#6fcbeb}.hero .k.ask{color:#f5a77f}.hero .k.learn{color:#97d891}
+.facts{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.9rem;color:#cfccd9;margin:0;padding:0;list-style:none}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts svg{width:17px;height:17px;flex:none;opacity:.85}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-block;padding:9px 16px;border-radius:8px;font-size:.92rem;font-weight:600;text-decoration:none}
+.btn.primary{background:#fff;color:var(--hero1)}
+.btn.ghost{border:1px solid rgba(255,255,255,.3);color:#fff}
+.loop{width:100%;max-width:380px;justify-self:center}
+
+/* sections */
+section{padding:64px 0 8px}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+h2{font-size:clamp(1.5rem,3.2vw,2rem);line-height:1.2;margin:0 0 18px;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:28px 0 10px}
+p{margin:0 0 14px}
+.lead{font-size:1.08rem;max-width:46em}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:start}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.qs{list-style:none;margin:0;padding:0}
+.qs li{padding:10px 0;border-bottom:1px solid var(--line)}
+.qs li:last-child{border-bottom:0}
+.qs .k{display:block;margin-bottom:2px}
+
+/* topics */
+.topics{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0 28px;counter-reset:t}
+.topics li{counter-increment:t;display:grid;grid-template-columns:34px 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+.topics li::before{content:counter(t,decimal-leading-zero);font-weight:700;color:var(--accent);font-size:.85rem;padding-top:2px}
+.topics b{display:block}
+.topics span{color:var(--muted);font-size:.93rem}
+
+/* cfp */
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.type{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:12px;padding:16px 18px}
+.type b{display:block;font-size:1.02rem}
+.type .len{font-size:.85rem;color:var(--accent);font-weight:700;display:block;margin:2px 0 8px}
+.type p{font-size:.93rem;color:var(--muted);margin:0}
+.checks{list-style:none;margin:0;padding:0}
+.checks li{position:relative;padding:6px 0 6px 26px}
+.checks li::before{content:"";position:absolute;left:2px;top:13px;width:12px;height:7px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:.95rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--band)}
+td.when{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700;width:1%}
+.tba{color:var(--muted);font-style:italic}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:2px 9px;border-radius:999px;background:var(--band);color:var(--muted);white-space:nowrap}
+.tag.talk{background:var(--accent-soft);color:var(--accent)}
+.tag.inter{background:color-mix(in srgb,var(--learn) 16%,transparent);color:var(--learn)}
+tr.band td{background:var(--band);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:7px 16px}
+td.what small{display:block;color:var(--muted);font-size:.86rem}
+.note{font-size:.88rem;color:var(--muted);margin-top:10px}
+
+/* people */
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px}
+.person{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 14px 16px}
+.avatar{width:112px;height:112px;border-radius:50%;margin:0 auto 12px;object-fit:cover;background:var(--band);box-shadow:0 0 0 1px var(--line),0 2px 8px rgba(0,0,0,.08)}
+.initials{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.8rem;color:#fff;letter-spacing:.02em;background:linear-gradient(135deg,#3a2a52,#8b1e3f)}
+.person b{display:block;font-size:1rem;line-height:1.3}
+.person b a{color:inherit;text-decoration:none}
+.person b a:hover{color:var(--accent)}
+.person .aff{display:block;color:var(--muted);font-size:.88rem;line-height:1.35;margin-top:4px}
+.person .tag{margin-top:10px}
+.person.tbd{border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted)}
+.person.tbd .avatar{display:flex;align-items:center;justify-content:center;font-size:2rem;background:transparent;border:2px dashed var(--line)}
+.people.small{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.people.small .avatar{width:88px;height:88px}
+
+/* contact + footer */
+.contact{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+footer{margin-top:72px;background:var(--hero1);color:#bfc1cc;font-size:.88rem}
+footer .wrap{padding-top:26px;padding-bottom:30px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+footer a{color:#e9a3b8}
+
+@media (max-width:820px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:36px;padding-bottom:40px}
+  .loop{max-width:260px;order:-1;justify-self:start}
+  .two,.types{grid-template-columns:1fr}
+  .topics{grid-template-columns:1fr}
+  section{padding-top:48px}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .brand{display:none}
+  .links{margin-left:0}
+  th,td{padding:10px 12px}
+  td.type-col{display:none}
+  .people{grid-template-columns:repeat(2,1fr);gap:12px}
+  .people.small{grid-template-columns:repeat(2,1fr)}
+  .avatar{width:88px;height:88px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections"><div class="wrap">
+  <a class="brand" href="#top">PAAI <span>@ ICRA 2027</span></a>
+  <div class="links">
+    <a href="#overview">Overview</a><a href="#topics">Topics</a><a href="#call">Call for Papers</a><a href="#dates">Dates</a><a href="#schedule">Schedule</a><a href="#speakers">Speakers</a><a href="#organizers">Organizers</a><a href="#contact">Contact</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="pill"><i></i>Proposed workshop · under review for ICRA 2027</span>
+      <h1>Physical Agentic AI<small>Robot Agents that Ask for Help and Learn from Human Intervention</small></h1>
+      <p class="q">When should a robot agent with a foundation-model brain <span class="k act">act</span>, when should it <span class="k ask">ask</span> a human for help, and what should it <span class="k learn">learn</span> from the answer?</p>
+      <ul class="facts">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>ICRA 2027 · Seoul, Korea</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Date set by ICRA (TBA)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Half day · 08:30–12:30</li>
+      </ul>
+      <div class="cta"><a class="btn primary" href="#call">Call for Papers</a><a class="btn ghost" href="#schedule">Tentative Schedule</a></div>
+    </div>
+    <svg class="loop" viewBox="0 0 340 320" role="img" aria-label="The act, ask, learn loop around a robot agent">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#c9c4d8"/></marker>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff" stop-opacity=".12"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="170" cy="165" r="150" fill="url(#glow)"/>
+      <circle cx="170" cy="165" r="108" fill="none" stroke="#ffffff" stroke-opacity=".14" stroke-width="1.5" stroke-dasharray="3 6"/>
+      <path d="M215 69 A108 108 0 0 1 272 196" fill="none" stroke="#c9c4d8" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M232 251 A108 108 0 0 1 108 251" fill="none" stroke="#c9c4d8" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M68 196 A108 108 0 0 1 125 69" fill="none" stroke="#c9c4d8" stroke-width="2" marker-end="url(#ah)"/>
+      <g font-family="Inter,-apple-system,Segoe UI,Roboto,sans-serif" font-weight="800" font-size="13" letter-spacing="1.2" text-anchor="middle">
+        <circle cx="170" cy="57" r="34" fill="#16354a" stroke="#6fcbeb" stroke-width="2"/><text x="170" y="62" fill="#6fcbeb">ACT</text>
+        <circle cx="264" cy="219" r="34" fill="#4a2618" stroke="#f5a77f" stroke-width="2"/><text x="264" y="224" fill="#f5a77f">ASK</text>
+        <circle cx="76" cy="219" r="34" fill="#1d3a1f" stroke="#97d891" stroke-width="2"/><text x="76" y="224" fill="#97d891">LEARN</text>
+      </g>
+      <!-- robot agent -->
+      <g transform="translate(170 165)" fill="none" stroke="#efeaf7" stroke-width="2.2" stroke-linecap="round">
+        <path d="M0 -38v-10"/><circle cx="0" cy="-51" r="3.5" fill="#efeaf7"/>
+        <rect x="-26" y="-38" width="52" height="38" rx="10"/>
+        <circle cx="-10" cy="-19" r="4" fill="#6fcbeb" stroke="none"/><circle cx="10" cy="-19" r="4" fill="#6fcbeb" stroke="none"/>
+        <path d="M-18 8h36v24h-36zM-18 14l-12 10M18 14l12 10"/>
+      </g>
+      <!-- human with a question -->
+      <g transform="translate(300 118)" fill="none" stroke="#f5a77f" stroke-width="2" stroke-linecap="round">
+        <circle cx="0" cy="0" r="8"/><path d="M-14 26c0-10 6-16 14-16s14 6 14 16"/>
+        <path d="M-34 -30h24a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6h-14l-8 7v-7h-2a6 6 0 0 1-6-6v-10a6 6 0 0 1 6-6z" stroke-opacity=".9"/>
+      </g>
+      <text x="278" y="98" font-family="Inter,-apple-system,Segoe UI,sans-serif" font-weight="800" font-size="15" fill="#f5a77f" text-anchor="middle">?</text>
+    </svg>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="overview">
+  <p class="eyebrow">Overview</p>
+  <h2>From asking for help to learning from it</h2>
+  <div class="two">
+    <div>
+      <p class="lead">Robots are starting to learn from their own operation, but when an agent should ask a human for help, and what it should change afterward, has no shared formulation or evaluation.</p>
+      <p>We use <i>physical agentic AI</i> for embodied systems that pursue multi-step goals, monitor their own execution, seek or accept intervention, and turn deployment outcomes into safer behavior. Generalist policies and language planners now give robots such a brain, and robot agents are beginning to improve from teleoperated corrections, fleet deployment, and their own exploration. Some already ask people for help and keep an operator's correction as a rule.</p>
+      <p>Yet when, whom, and how to ask is left to improvisation; an update may fix one failure while introducing another; and success rate hides human burden, recovery time, and regression. This workshop brings these questions together around one test: <b>does one deployment yield a measurably safer and more capable next one, at what human cost, and without regression?</b></p>
+    </div>
+    <aside class="box" aria-label="Key questions">
+      <h3 style="margin-top:0">Key questions</h3>
+      <ul class="qs">
+        <li><span class="k act">Act</span>Can the agent tell that it is failing?</li>
+        <li><span class="k ask">Ask</span>When, whom, and how should it ask for help?</li>
+        <li><span class="k learn">Learn</span>Which part of the agent (plans, verifiers, memory, skills, or policy) should an intervention update?</li>
+      </ul>
+      <p class="note" style="margin-bottom:0">Outcomes: non-archival papers and demos, a checklist for measuring human burden and regression, and a public roadmap.</p>
+    </aside>
+  </div>
+</section>
+
+<section id="topics">
+  <p class="eyebrow">Topics</p>
+  <h2>Topics of interest</h2>
+  <ol class="topics">
+    <li><div><b>Help-seeking</b><span>When, whom, and how a robot agent should ask, and how its uncertainty should drive the decision.</span></div></li>
+    <li><div><b>Intervention as supervision</b><span>Turning human corrections and takeovers into targeted updates for the agent.</span></div></li>
+    <li><div><b>Self-monitoring</b><span>Detecting failure and recognizing what the agent cannot yet do.</span></div></li>
+    <li><div><b>Agent memory and skills</b><span>What an agent stores from deployment: plans, programs, skills, and rules.</span></div></li>
+    <li><div><b>Validating updates</b><span>Checking that a fix does not introduce regression elsewhere.</span></div></li>
+    <li><div><b>Burden-centered evaluation</b><span>Measuring human time, recovery, and regression, not only success rate.</span></div></li>
+    <li><div><b>Human factors</b><span>How people experience being asked, and how they intervene.</span></div></li>
+  </ol>
+</section>
+
+<section id="call">
+  <p class="eyebrow">Call for Papers</p>
+  <h2>Submit papers and demos</h2>
+  <p>We invite work on an agent's help-seeking, intervention-driven updates, or their evaluation. Focused work on one of these is welcome.</p>
+  <div class="types">
+    <div class="type"><b>Research papers</b><span class="len">4–6 pages</span><p>Full research contributions.</p></div>
+    <div class="type"><b>Short reports</b><span class="len">2–4 pages</span><p>Position papers, negative results, and deployment reports.</p></div>
+    <div class="type"><b>Demos</b><span class="len">2-page abstract + video</span><p>Live or video-backed demos; simulation is welcome.</p></div>
+  </div>
+  <ul class="checks">
+    <li>Non-archival: there are no proceedings.</li>
+    <li>Double-blind review on OpenReview, with at least two reviews per submission.</li>
+    <li>Accepted papers are presented as posters; selected papers give spotlight talks.</li>
+    <li>Awards: Best Paper, Best Student Paper, and Best Demo.</li>
+    <li>Submission portal: OpenReview (link will be posted after acceptance).</li>
+  </ul>
+</section>
+
+<section id="dates">
+  <p class="eyebrow">Important Dates</p>
+  <h2>Timeline</h2>
+  <table>
+    <tr><th>Milestone</th><th>Date</th></tr>
+    <tr><td>Call for papers opens</td><td class="tba">TBA after acceptance</td></tr>
+    <tr><td>Submission deadline</td><td class="tba">TBA after acceptance</td></tr>
+    <tr><td>Notification</td><td class="tba">TBA after acceptance</td></tr>
+    <tr><td>Camera-ready</td><td class="tba">TBA after acceptance</td></tr>
+    <tr><td>Workshop day</td><td class="tba">Set by ICRA 2027, Seoul</td></tr>
+  </table>
+</section>
+
+<section id="schedule">
+  <p class="eyebrow">Program</p>
+  <h2>Tentative schedule</h2>
+  <table>
+    <tr><th>Time</th><th>Session</th><th class="type-col">Format</th></tr>
+    <tr class="band"><td colspan="3">Morning · part 1</td></tr>
+    <tr><td class="when">08:30</td><td class="what">Welcome: the act–ask–learn loop</td><td class="type-col"><span class="tag">Opening</span></td></tr>
+    <tr><td class="when">08:40</td><td class="what"><span class="k act">Act</span> · Invited talk 1<small>Agents that find what they cannot yet do</small></td><td class="type-col"><span class="tag talk">Talk + Q&amp;A</span></td></tr>
+    <tr><td class="when">09:05</td><td class="what"><span class="k ask">Ask</span> · Invited talk 2<small>Uncertainty-aligned help-seeking</small></td><td class="type-col"><span class="tag talk">Talk + Q&amp;A</span></td></tr>
+    <tr><td class="when">09:30</td><td class="what">Spotlights and demo teasers<small>Three 5-minute spotlights and up to five one-minute demo teasers</small></td><td class="type-col"><span class="tag">Contributed</span></td></tr>
+    <tr><td class="when">10:00</td><td class="what">Coffee, posters, and live demos<small>With a meet-the-speakers table</small></td><td class="type-col"><span class="tag inter">Interactive</span></td></tr>
+    <tr class="band"><td colspan="3">Morning · part 2</td></tr>
+    <tr><td class="when">10:50</td><td class="what"><span class="k learn">Learn</span> · Invited talk 3<small>Learning from intervention during deployment</small></td><td class="type-col"><span class="tag talk">Talk + Q&amp;A</span></td></tr>
+    <tr><td class="when">11:15</td><td class="what">Ask-for-Help Clinic<small>Small groups examine anonymized deployment cases</small></td><td class="type-col"><span class="tag inter">Interactive</span></td></tr>
+    <tr><td class="when">11:35</td><td class="what">Debate<small>When should a robot ask for help, and what should it learn?</small></td><td class="type-col"><span class="tag inter">Interactive</span></td></tr>
+    <tr><td class="when">12:15</td><td class="what">Awards and closing</td><td class="type-col"><span class="tag">Closing</span></td></tr>
+  </table>
+  <p class="note">Times are tentative and may change.</p>
+</section>
+
+<section id="speakers">
+  <p class="eyebrow">Speakers</p>
+  <h2>Invited speakers</h2>
+  <div class="people">
+    <div class="person"><img class="avatar" src="img/chalvatzaki.jpg" alt="Georgia Chalvatzaki" loading="lazy"><b><a href="https://pearl-lab.com/">Georgia Chalvatzaki</a></b><span class="aff">TU Darmstadt</span><span class="tag talk">Invited talk</span></div>
+    <div class="person"><img class="avatar" src="img/zhang.jpg" alt="Shanghang Zhang" loading="lazy"><b><a href="https://cs.pku.edu.cn/info/1233/2060.htm">Shanghang Zhang</a></b><span class="aff">Peking University</span><span class="tag inter">Debate panelist</span></div>
+    <div class="person tbd"><div class="avatar">+</div><b>More speakers</b><span class="aff">to be announced</span></div>
+  </div>
+</section>
+
+<section id="organizers">
+  <p class="eyebrow">Team</p>
+  <h2>Organizers</h2>
+  <div class="people">
+    <div class="person"><img class="avatar" src="img/li.jpg" alt="Xin Li" loading="lazy"><b><a href="https://lixin.ai">Xin Li</a></b><span class="aff">Nanyang Technological University</span></div>
+    <div class="person"><div class="avatar initials" aria-hidden="true">AW</div><b><a href="https://scholar.google.com/citations?hl=en&amp;user=vZn0gL8AAAAJ">Annan Wang</a></b><span class="aff">Nanyang Technological University</span></div>
+    <div class="person"><div class="avatar initials" aria-hidden="true">ZH</div><b><a href="http://zxhezexin.com">Zexin He</a></b><span class="aff">Nanyang Technological University</span></div>
+    <div class="person"><img class="avatar" src="img/zhu.jpg" alt="Qianyu (Julie) Zhu" loading="lazy"><b><a href="https://cse.mit.edu/people/qianyu-julie-zhu/">Qianyu (Julie) Zhu</a></b><span class="aff">MIT</span></div>
+    <div class="person"><img class="avatar" src="img/hu.jpg" alt="Jingyang Hu" loading="lazy"><b><a href="https://scholar.google.com/citations?user=JCNXBYoAAAAJ&amp;hl=en">Jingyang Hu</a></b><span class="aff">University of Science and Technology of China</span></div>
+    <div class="person"><img class="avatar" src="img/chen.jpg" alt="Chuchu Chen" loading="lazy"><b><a href="https://chuchuchen.net/">Chuchu Chen</a></b><span class="aff">George Washington University</span></div>
+    <div class="person"><img class="avatar" src="img/schmid.jpg" alt="Lukas Rosenberger Schmid" loading="lazy"><b><a href="https://schmluk.github.io/">Lukas Rosenberger Schmid</a></b><span class="aff">University of Technology Nuremberg</span></div>
+    <div class="person"><img class="avatar" src="img/tombari.jpg" alt="Federico Tombari" loading="lazy"><b><a href="https://federicotombari.github.io/">Federico Tombari</a></b><span class="aff">Google · TU Munich</span></div>
+  </div>
+  <h3>Advisory board</h3>
+  <div class="people small">
+    <div class="person"><img class="avatar" src="img/pan.jpg" alt="Xingang Pan" loading="lazy"><b><a href="https://xingangpan.github.io/">Xingang Pan</a></b><span class="aff">Nanyang Technological University</span></div>
+    <div class="person"><div class="avatar initials" aria-hidden="true">WL</div><b><a href="https://personal.ntu.edu.sg/wslin/">Weisi Lin</a></b><span class="aff">Nanyang Technological University</span></div>
+    <div class="person"><img class="avatar" src="img/yuen.jpg" alt="Chau Yuen" loading="lazy"><b><a href="https://blogs.ntu.edu.sg/chau-yuen/">Chau Yuen</a></b><span class="aff">Nanyang Technological University</span></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="box contact">
+    <div><p class="eyebrow">Contact</p><h2 style="margin:0">Questions about the workshop?</h2></div>
+    <a class="btn" style="background:var(--accent);color:#fff" href="mailto:xin019@e.ntu.edu.sg">Email Xin Li · xin019@e.ntu.edu.sg</a>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <span>Physical Agentic AI (PAAI) · a workshop proposed for ICRA 2027, under review; not yet accepted.</span>
+  <span>Last updated October 29, 2026 · <a href="CREDITS.md">Photo credits</a></span>
+</div></footer>
+</body>
+</html>
