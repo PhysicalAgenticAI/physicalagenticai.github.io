@@ -13,6 +13,7 @@ Each photo below was downloaded on 2026-10-29 from the person's own homepage or 
 | img/pan.jpg | Xingang Pan | https://xingangpan.github.io/ | https://xingangpan.github.io/picture/xingangpan.png |
 | img/zhang.jpg | Shanghang Zhang | https://cs.pku.edu.cn/info/1233/2060.htm | PKU profile-page photo, served through a page-session link (virtual_attach_file.vsb). Downloaded in the same session as the page. |
 | img/yuen.jpg | Chau Yuen | https://www.ntu.edu.sg/erian/about-us/our-people/cluster-directors/yuen-chau | https://www.ntu.edu.sg/media/images/librariesprovider60/erian-images---web/about-us/cluster-directors/yuen-chau-01.jpg |
+| img/dixit.jpg | Anushri Dixit | https://samueli.ucla.edu/people/anushri-dixit/ | https://samueli.ucla.edu/wp-content/uploads/samueli/Anushri-Dixit-600x400-1.jpg (downloaded 2026-11-01; full-size version of the photo on the profile page) |
 
 Provided by Xin Li (10-29). These images came from Xin and were cropped square at their original resolution, with no upscaling:
 
